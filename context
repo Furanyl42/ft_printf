@@ -1,0 +1,38 @@
+[MASTER PLAN] Projet : ft_printf (42 Brussels)
+1. Contexte & Contraintes
+
+    Objectif : Recoder ft_printf avec les conversions de base (cspdiuxX%) et tous les bonus (flags -, 0, ., #, +, espace, et largeur minimale).
+
+    Fonctions externes autorisées : malloc, free, write, va_start, va_arg, va_copy, va_end.
+
+    Contraintes qualité : Respect strict de la Norme 42, Makefile complet (all, clean, fclean, re, avec règle ar rc), et gestion rigoureuse des retours (nombre d'octets écrits) ainsi que de la mémoire (zéro fuite sous valgrind).
+
+2. Choix d'Architecture : L'Allocation Encapsulée
+
+Pour éviter le code spaghetti des write conditionnels tout en maîtrisant la mémoire :
+
+    Le Parsing (ft_parse_format) remplit une structure t_format avec tous les drapeaux détectés.
+
+    Les Helpers de Formatage (ft_format_nbr, ft_format_str, etc.) prennent cette structure et la valeur, calculent le rendu final, et allouent (malloc) une chaîne de caractères prête à l'affichage (contenant déjà les espaces, zéros de remplissage, signes, et préfixes).
+
+    Le Dispatcher principal (ft_printf) récupère cette chaîne, l'écrit avec write, incrémente le compteur de caractères, et libère immédiatement la mémoire avec free.
+
+3. Feuille de Route (Étapes)
+
+    [x] Étape 1 : Définition de la structure t_format et mise en place de la boucle principale de dispatch.
+
+    [ ] Étape 2 : Implémentation du parsing complet des flags, de la largeur et de la précision dans ft_parse_format.
+
+    [ ] Étape 3 : Implémentation des conversions simples (%c, %s, %%) avec leur helper d'allocation.
+
+    [ ] Étape 4 : Implémentation des entiers décimaux (%d, %i, %u) avec gestion complète de la précision et du padding (largeur, zéros, signes + et espace).
+
+    [ ] Étape 5 : Implémentation des formats hexadécimaux et pointeurs (%x, %X, %p) avec gestion du préfixe #.
+
+    [ ] Étape 6 : Finalisation du Makefile, vérification de la Norme, et tests croisés rigoureux (comparaison avec le printf natif + traque des leaks avec valgrind).
+
+4. État d'Avancement Actuel
+
+    Phase active : Transition vers l'Étape 2 (mise au point du parsing des flags dans la structure).
+
+    Prochaine tâche précise : Écrire la logique de ft_parse_format pour extraire proprement les modificateurs de format (-, 0, ., chiffres de largeur/précision).
