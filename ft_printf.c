@@ -6,14 +6,14 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 10:58:22 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 17:13:04 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/14 17:31:13 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include <strings.h> // a changer par libft
 
-int	ft_conversion(char spec, va_list args, t_format *fmt)
+int	ft_conversion(va_list args, t_format *fmt)
 {
 	static table funcs[128] = {0};
 	static int	is_init = 0;
@@ -31,8 +31,8 @@ int	ft_conversion(char spec, va_list args, t_format *fmt)
 		funcs['%'] = ft_print_percent;
 		is_init = 1;
 	}
-	if (funcs[fmt->specifier])
-		return (funcs[fmt->specifier](args, fmt));
+	if (funcs[(int)fmt->specifier])
+		return (funcs[(int)fmt->specifier](args, fmt));
 	
 	return (0);
 }
@@ -58,7 +58,7 @@ int ft_printf(char *format, ...)
 
 			bzero(&fmt, sizeof(t_format));
 			ft_parse_format((char **)&format, &fmt);
-			r = ft_conversion(*format, args, &fmt);
+			r = ft_conversion(args, &fmt);
 			if (r == -1)
 			{
 				va_end(args);
