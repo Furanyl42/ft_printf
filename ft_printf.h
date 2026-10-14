@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:52:05 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/13 18:01:03 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/14 15:06:23 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,10 @@ typedef struct s_format
 	char specifier;
 }	t_format;
 
-int	ft_printf(const char *format, ...);
+typedef int (*t_conv_func)(va_list, t_format *);
+
+int	ft_print_percent(va_list args, t_format *fmt);
+int ft_print_char(va_list args, t_format *fmt);
+int ft_print_str(va_list args, t_format *fmt);
+int ft_print_nbr(va_list args, t_format *fmt);
+#endif
