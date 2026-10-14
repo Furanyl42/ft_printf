@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 14:53:42 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 15:04:22 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/14 15:30:36 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ static int ft_putnbr_len(long n)
 	return (count);
 }
 
+#include <stdio.h>
 int ft_print_nbr(va_list args, t_format *fmt)
 {
 	long nbr;

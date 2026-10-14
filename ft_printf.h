@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:52:05 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 15:06:23 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/14 16:08:38 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,10 @@ int	ft_print_percent(va_list args, t_format *fmt);
 int ft_print_char(va_list args, t_format *fmt);
 int ft_print_str(va_list args, t_format *fmt);
 int ft_print_nbr(va_list args, t_format *fmt);
+int ft_print_unsigned(va_list args, t_format *fmt);
+int ft_print_hex_lower(va_list args, t_format *fmt);
+int ft_print_hex_upper(va_list args, t_format *fmt);
+
+
+
 #endif
