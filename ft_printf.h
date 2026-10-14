@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:52:05 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 16:08:38 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/14 16:57:36 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ typedef struct s_format
 	char specifier;
 }	t_format;
 
-typedef int (*t_conv_func)(va_list, t_format *);
+typedef int (*table)(va_list, t_format *);
 
 int	ft_print_percent(va_list args, t_format *fmt);
 int ft_print_char(va_list args, t_format *fmt);
@@ -39,7 +39,7 @@ int ft_print_nbr(va_list args, t_format *fmt);
 int ft_print_unsigned(va_list args, t_format *fmt);
 int ft_print_hex_lower(va_list args, t_format *fmt);
 int ft_print_hex_upper(va_list args, t_format *fmt);
-
+int ft_print_ptr(va_list args, t_format *fmt);
 
 
 #endif

@@ -6,7 +6,7 @@
 #    By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/14 12:39:34 by nide-wil          #+#    #+#              #
-#    Updated: 2026/10/14 16:09:01 by nide-wil         ###   ########.fr        #
+#    Updated: 2026/10/14 16:46:49 by nide-wil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS		= ft_printf.c \
 			  ft_print_nbr.c \
 			  ft_print_unsigned.c \
 			  ft_print_hex.c \
+			  ft_print_ptr.c \
 
 OBJS		= $(SRCS:.c=.o)
 

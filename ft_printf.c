@@ -6,27 +6,16 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 10:58:22 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 12:42:52 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/14 17:13:04 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdarg.h>
-#include <unistd.h>
 #include "ft_printf.h"
+#include <strings.h> // a changer par libft
 
-
-
-int    ft_print_char(va_list args, t_format *fmt);
-int    ft_print_str(va_list args, t_format *fmt);
-int    ft_print_ptr(va_list args, t_format *fmt);
-int    ft_print_nbr(va_list args, t_format *fmt);
-int    ft_print_unsigned(va_list args, t_format *fmt);
-int    ft_print_hex_low(va_list args, t_format *fmt);
-int    ft_print_hex_up(va_list args, t_format *fmt);
-int    ft_print_percent(va_list args, t_format *fmt);
-int	ft_conversion(t_format *fmt, va_list args)
+int	ft_conversion(char spec, va_list args, t_format *fmt)
 {
-	static t_conv_func funcs[128] = {0};
+	static table funcs[128] = {0};
 	static int	is_init = 0;
 
 	if (!is_init)
@@ -35,15 +24,52 @@ int	ft_conversion(t_format *fmt, va_list args)
 		funcs['s'] = ft_print_str;
 		funcs['p'] = ft_print_ptr;
 		funcs['d'] = ft_print_nbr;
-		funcs['i'] = ft_print_nbr; // %d et %i font la même chose
+		funcs['i'] = ft_print_nbr;
 		funcs['u'] = ft_print_unsigned;
-		funcs['x'] = ft_print_hex_low;
-		funcs['X'] = ft_print_hex_up;
+		funcs['x'] = ft_print_hex_lower;
+		funcs['X'] = ft_print_hex_upper;
 		funcs['%'] = ft_print_percent;
+		is_init = 1;
 	}
-	if (funcs[(int)fmt->specifier])
-		return (funcs[(int)fmt->specifier](args, fmt));
+	if (funcs[fmt->specifier])
+		return (funcs[fmt->specifier](args, fmt));
 	
 	return (0);
 }
 
+int ft_printf(char *format, ...)
+{
+	va_list args;
+	int	count;
+	t_format fmt;
+	int r;
+
+	if (!format)
+		return (-1);
+	va_start(args, format);
+	count = 0;
+	while (*format)
+	{
+		if (*format == '%')
+		{
+			format++;
+			if (!*format)
+				break;
+
+			bzero(&fmt, sizeof(t_format));
+			ft_parse_format((char **)&format, &fmt);
+			r = ft_conversion(*format, args, &fmt);
+			if (r == -1)
+			{
+				va_end(args);
+				return (-1);
+			}
+			count += r;
+		}
+		else
+			count += write(1, format, 1);
+		format++;
+	}
+	va_end(args);
+	return (count);
+}
