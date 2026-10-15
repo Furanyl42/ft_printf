@@ -6,7 +6,7 @@
 #    By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/14 12:39:34 by nide-wil          #+#    #+#              #
-#    Updated: 2026/10/15 13:27:48 by nide-wil         ###   ########.fr        #
+#    Updated: 2026/10/15 13:40:39 by nide-wil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ SRCS		= ft_printf.c \
 OBJS		= $(SRCS:.c=.o)
 
 CC			= cc
-CFLAGS		= -g #-Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 AR			= ar rcs
 
