@@ -6,35 +6,29 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 17:14:20 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 17:24:03 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/15 11:50:25 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void ft_init_format(t_format *fmt)
+static void	ft_init_format(t_format *fmt)
 {
 	fmt->minus = 0;
-    fmt->zero = 0;
-    fmt->dot = 0;
-    fmt->width = 0;
-    fmt->precision = 0;
-    fmt->hash = 0;
-    fmt->space = 0;
-    fmt->plus = 0;
-    fmt->specifier = '\0';
+	fmt->zero = 0;
+	fmt->dot = 0;
+	fmt->width = 0;
+	fmt->precision = 0;
+	fmt->hash = 0;
+	fmt->space = 0;
+	fmt->plus = 0;
+	fmt->specifier = '\0';
 }
 
-static int is_flag(char c)
+static void	ft_parse_flags(char **format, t_format *fmt)
 {
-	return (c == '-' || c == '0' || c == '#' || c == '+');
-}
-
-void ft_parse_format(char **format, t_format *fmt)
-{
-	ft_init_format(fmt);
-
-	while (**format && is_flag(**format))
+	while (**format && (**format == '-' || **format == '0' || **format == '#'
+			|| **format == ' ' || **format == '+'))
 	{
 		if (**format == '-')
 			fmt->minus = 1;
@@ -48,16 +42,15 @@ void ft_parse_format(char **format, t_format *fmt)
 			fmt->plus = 1;
 		(*format)++;
 	}
+}
 
-	if (**format >= '0' && **format <= '9')
+static void	ft_parse_num_and_prec(char **format, t_format *fmt)
+{
+	while (**format >= '0' && **format <= '9')
 	{
-		while (**format >= '0' && **format <= '9')
-		{
-			fmt->width = (fmt->width * 10) + (**format - '0');
-			(*format)++;
-		}
+		fmt->width = (fmt->width * 10) + (**format - '0');
+		(*format)++;
 	}
-
 	if (**format == '.')
 	{
 		fmt->dot = 1;
@@ -68,7 +61,13 @@ void ft_parse_format(char **format, t_format *fmt)
 			(*format)++;
 		}
 	}
+}
 
+void	ft_parse_format(char **format, t_format *fmt)
+{
+	ft_init_format(fmt);
+	ft_parse_flags(format, fmt);
+	ft_parse_num_and_prec(format, fmt);
 	if (**format)
 		fmt->specifier = **format;
 }

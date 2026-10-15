@@ -12,17 +12,16 @@
 
 #include "ft_printf.h"
 
-int ft_print_percent(va_list args, t_format *fmt)
+int	ft_print_percent(va_list args, t_format *fmt)
 {
-	int count;
-	int width;
+	int	count;
+	int	width;
 
 	(void)args;
 	count = 0;
 	width = fmt->width;
 	if (width <= 0)
 		width = 1;
-	
 	if (!fmt->minus && fmt->zero)
 	{
 		while (count < width - 1)
@@ -33,14 +32,11 @@ int ft_print_percent(va_list args, t_format *fmt)
 		while (count < width - 1)
 			count += write(1, " ", 1);
 	}
-
 	count += write(1, "%", 1);
-
 	if (fmt->minus)
 	{
 		while (count < width)
 			count += write(1, " ", 1);
 	}
-
 	return (count);
 }

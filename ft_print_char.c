@@ -14,24 +14,21 @@
 
 int	ft_print_char(va_list args, t_format *fmt)
 {
-	unsigned char c;
-	int count;
-	int width;
+	unsigned char	c;
+	int				count;
+	int				width;
 
 	c = (unsigned char)va_arg(args, int);
 	count = 0;
 	width = fmt->width;
 	if (width <= 0)
 		width = 1;
-
 	if (!fmt->minus)
 	{
 		while (count < width - 1)
 			count += write(1, " ", 1);
 	}
-
 	count += write(1, &c, 1);
-
 	if (fmt->minus)
 	{
 		while (count < width)

@@ -6,15 +6,15 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 14:53:42 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 15:30:36 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/15 12:19:26 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static int ft_nbrlen(long n)
+static int	ft_nbrlen(long n)
 {
-	int len;
+	int	len;
 
 	len = 0;
 	if (n <= 0)
@@ -30,9 +30,9 @@ static int ft_nbrlen(long n)
 	return (len);
 }
 
-static int ft_putnbr_len(long n)
+static int	ft_putnbr_len(long n)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	if (n < 0)
@@ -46,13 +46,12 @@ static int ft_putnbr_len(long n)
 	return (count);
 }
 
-#include <stdio.h>
-int ft_print_nbr(va_list args, t_format *fmt)
+int	ft_print_nbr(va_list args, t_format *fmt)
 {
-	long nbr;
-	int len;
-	int width;
-	int count;
+	long	nbr;
+	int		len;
+	int		width;
+	int		count;
 
 	nbr = va_arg(args, int);
 	len = ft_nbrlen(nbr);
@@ -60,15 +59,12 @@ int ft_print_nbr(va_list args, t_format *fmt)
 	if (width < len)
 		width = len;
 	count = 0;
-
 	if (!fmt->minus)
 	{
 		while (count < width - len)
 			count += write(1, " ", 1);
 	}
-
 	count += ft_putnbr_len(nbr);
-
 	if (fmt->minus)
 	{
 		while (count < width)

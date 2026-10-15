@@ -12,14 +12,13 @@
 
 #include "ft_printf.h"
 
-static int ft_unsigned_len(unsigned int n)
+static int	ft_unsigned_len(unsigned int n)
 {
-	int len;
-	len = 0;
+	int	len;
 
+	len = 0;
 	if (n == 0)
 		return (1);
-
 	while (n > 0)
 	{
 		n /= 10;
@@ -28,10 +27,10 @@ static int ft_unsigned_len(unsigned int n)
 	return (len);
 }
 
-static int ft_putnbr_unsigned(unsigned int n)
+static int	ft_putnbr_unsigned(unsigned int n)
 {
-	int count;
-	
+	int	count;
+
 	count = 0;
 	if (n > 9)
 		count += ft_putnbr_unsigned(n / 10);
@@ -39,12 +38,12 @@ static int ft_putnbr_unsigned(unsigned int n)
 	return (count);
 }
 
-int ft_print_unsigned(va_list args, t_format *fmt)
+int	ft_print_unsigned(va_list args, t_format *fmt)
 {
-	unsigned int nbr;
-	int len;
-	int width;
-	int count;
+	unsigned int	nbr;
+	int				len;
+	int				width;
+	int				count;
 
 	nbr = va_arg(args, unsigned int);
 	len = ft_unsigned_len(nbr);
@@ -52,20 +51,16 @@ int ft_print_unsigned(va_list args, t_format *fmt)
 	if (width < len)
 		width = len;
 	count = 0;
-
 	if (!fmt->minus)
 	{
 		while (count < width - len)
 			count += write(1, " ", 1);
 	}
-
 	count += ft_putnbr_unsigned(nbr);
-
 	if (fmt->minus)
 	{
 		while (count < width)
 			count += write(1, " ", 1);
 	}
-
 	return (count);
 }

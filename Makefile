@@ -6,7 +6,7 @@
 #    By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/14 12:39:34 by nide-wil          #+#    #+#              #
-#    Updated: 2026/10/14 17:24:24 by nide-wil         ###   ########.fr        #
+#    Updated: 2026/10/15 12:17:42 by nide-wil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,13 +19,14 @@ SRCS		= ft_printf.c \
 			  ft_print_nbr.c \
 			  ft_print_unsigned.c \
 			  ft_print_hex.c \
+			  ft_hex_utils.c \
 			  ft_print_ptr.c \
 			  ft_parse.c \
 
 OBJS		= $(SRCS:.c=.o)
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror
+CFLAGS		= -g #-Wall -Wextra -Werror
 RM			= rm -f
 AR			= ar rcs
 
@@ -43,6 +44,7 @@ $(NAME): $(OBJS)
 test: $(NAME) $(TEST_SRC)
 	$(CC) $(CFLAGS) $(TEST_SRC) $(NAME) -I. -o $(TEST_BIN)
 	./$(TEST_BIN)
+	$(MAKE) fclean
 
 clean:
 	$(RM) $(OBJS)

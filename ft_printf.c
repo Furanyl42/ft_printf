@@ -6,17 +6,17 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 10:58:22 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/14 17:31:13 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/15 13:16:36 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
-#include <strings.h> // a changer par libft
+#include "libft/libft.h"
 
 int	ft_conversion(va_list args, t_format *fmt)
 {
-	static table funcs[128] = {0};
-	static int	is_init = 0;
+	static t_func	funcs[128] = {0};
+	static int		is_init = 0;
 
 	if (!is_init)
 	{
@@ -33,16 +33,36 @@ int	ft_conversion(va_list args, t_format *fmt)
 	}
 	if (funcs[(int)fmt->specifier])
 		return (funcs[(int)fmt->specifier](args, fmt));
-	
 	return (0);
 }
 
-int ft_printf(char *format, ...)
+static int	ft_process_specifier(char **format, va_list args)
 {
-	va_list args;
-	int	count;
-	t_format fmt;
-	int r;
+	t_format	fmt;
+
+	ft_bzero(&fmt, sizeof(t_format));
+	ft_parse_format(format, &fmt);
+	return (ft_conversion(args, &fmt));
+}
+
+static int	ft_print_format_spec(char **format, va_list args, int *count)
+{
+	int	r;
+
+	(*format)++;
+	if (!**format)
+		return (0);
+	r = ft_process_specifier(format, args);
+	if (r == -1)
+		return (-1);
+	*count += r;
+	return (1);
+}
+
+int	ft_printf(char *format, ...)
+{
+	va_list	args;
+	int		count;
 
 	if (!format)
 		return (-1);
@@ -52,22 +72,16 @@ int ft_printf(char *format, ...)
 	{
 		if (*format == '%')
 		{
-			format++;
-			if (!*format)
-				break;
-
-			bzero(&fmt, sizeof(t_format));
-			ft_parse_format((char **)&format, &fmt);
-			r = ft_conversion(args, &fmt);
-			if (r == -1)
+			if (ft_print_format_spec(&format, args, &count) == -1)
 			{
 				va_end(args);
 				return (-1);
 			}
-			count += r;
 		}
 		else
 			count += write(1, format, 1);
+		if (!*format)
+			break ;
 		format++;
 	}
 	va_end(args);
