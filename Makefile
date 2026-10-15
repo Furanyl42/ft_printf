@@ -6,11 +6,13 @@
 #    By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/14 12:39:34 by nide-wil          #+#    #+#              #
-#    Updated: 2026/10/15 12:17:42 by nide-wil         ###   ########.fr        #
+#    Updated: 2026/10/15 13:27:48 by nide-wil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= libftprintf.a
+
+LIBFT		= libft/libft.a
 
 SRCS		= ft_printf.c \
 			  ft_print_percent.c \
@@ -35,7 +37,11 @@ TEST_SRC	= main_test.c
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(LIBFT):
+	@make -C libft
+
+$(NAME): $(LIBFT) $(OBJS)
+	cp $(LIBFT) $(NAME)
 	$(AR) $(NAME) $(OBJS)
 
 %.o: %.c ft_printf.h
