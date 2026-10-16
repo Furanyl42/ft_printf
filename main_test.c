@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 12:29:07 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/16 16:39:03 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/16 17:11:43 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,8 +153,5 @@ int main(void)
 	else
 		printf("⚠️ Certains tests ont échoué. Vérifie les différences ci-dessus.\n");
 	
-	printf("\n");
-	ft_printf("%04X\n", 3);
-	printf("%04X\n", 3);
 	return (0);
 }

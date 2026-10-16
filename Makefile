@@ -6,7 +6,7 @@
 #    By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/14 12:39:34 by nide-wil          #+#    #+#              #
-#    Updated: 2026/10/16 16:36:35 by nide-wil         ###   ########.fr        #
+#    Updated: 2026/10/16 17:16:11 by nide-wil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,11 +24,12 @@ SRCS		= ft_printf.c \
 			  ft_hex_utils.c \
 			  ft_print_ptr.c \
 			  ft_parse.c \
+			  ft_padding.c \
 
 OBJS		= $(SRCS:.c=.o)
 
 CC			= cc
-CFLAGS		= -g #-Wall -Wextra -Werror
+CFLAGS		= -Wall -Wextra -Werror
 RM			= rm -f
 AR			= ar rcs
 
@@ -48,7 +49,7 @@ $(NAME): $(LIBFT) $(OBJS)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 test: $(NAME) $(TEST_SRC)
-	$(CC) $(CFLAGS) $(TEST_SRC) $(NAME) -I. -o $(TEST_BIN)
+	$(CC) $(TEST_SRC) $(NAME) -I. -o $(TEST_BIN)
 	./$(TEST_BIN)
 	$(MAKE) fclean
 

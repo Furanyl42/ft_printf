@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 16:26:04 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/16 16:54:12 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/16 17:13:42 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,6 @@ static int	ft_put_ptr_hex(unsigned long n)
 	if (n >= 16)
 		count += ft_put_ptr_hex(n / 16);
 	count += write(1, &base[n % 16], 1);
-	return (count);
-}
-
-static int	ft_print_spaces(int n)
-{
-	int	count;
-
-	count = 0;
-	while (count < n)
-		count += write(1, " ", 1);
 	return (count);
 }
 
