@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 16:26:04 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/15 12:23:29 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/16 16:54:12 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,10 @@ static int	ft_print_nil(t_format *fmt)
 	if (width < len)
 		width = len;
 	if (!fmt->minus)
-		count += ft_print_spaces(width - len);
+		count += ft_print_npad(fmt,width - len);
 	count += write(1, "(nil)", len);
 	if (fmt->minus && count < width)
-		count += ft_print_spaces(width - count);
+		count += ft_print_npad(fmt, width - count);
 	return (count);
 }
 
@@ -87,10 +87,10 @@ int	ft_print_ptr(va_list args, t_format *fmt)
 		width = len;
 	count = 0;
 	if (!fmt->minus)
-		count += ft_print_spaces(width - len);
+		count += ft_print_npad(fmt,width - len);
 	count += write(1, "0x", 2);
 	count += ft_put_ptr_hex(addr);
 	if (fmt->minus && count < width)
-		count += ft_print_spaces(width - count);
+		count += ft_print_npad(fmt,width - count);
 	return (count);
 }
