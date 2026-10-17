@@ -63,7 +63,7 @@ static void	ft_parse_num_and_prec(char **format, t_format *fmt)
 	}
 }
 
-void	ft_parse_format(char **format, t_format *fmt)
+void	ft_parse_formatter(char **format, t_format *fmt)
 {
 	ft_init_format(fmt);
 	ft_parse_flags(format, fmt);
