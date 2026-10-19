@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 12:29:07 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/19 11:56:02 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/19 15:21:44 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,114 +16,10 @@
 #include <unistd.h>
 
 
-int	main(void)
+int main(void)
 {
-	char c = 'c';
-	char *s = "string";
-	int d = -42;
-	unsigned int u = 42;
-
-	printf("\n====================\n\n");
-	printf("ft_printf: [BASIC]\n\n");
-	ft_printf("%%c : %c\n", 'a');
-	ft_printf("%%s : %s\n", "string");
-	ft_printf("%%p : %p\n", &d);
-	ft_printf("%%d : %d %d %d %d %d %d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%i : %i %i %i %i %i %i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%u : %u %u %u\n", 0, 42, INT_MAX);
-	ft_printf("%%x : %x\n", d);
-	ft_printf("%%X : %X\n", d);
-
-	printf("\n====================\n\n");
-	printf("printf: [BASIC]\n\n");
-	printf("%%c : %c\n", 'a');
-	printf("%%s : %s\n", "string");
-	printf("%%p : %p\n", &d);
-	printf("%%d : %d %d %d %d %d %d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%i : %i %i %i %i %i %i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%u : %u %u %u\n", 0, 42, INT_MAX);
-	printf("%%x : %x\n", d);
-	printf("%%X : %X\n", d);
-
-
-	printf("\n====================\n\n");
-	printf("ft_printf: [-5]\n\n");
-	ft_printf("%%c : %-5c\n", 'a');
-	ft_printf("%%s : %-5s\n", "string");
-	ft_printf("%%p : %-5p\n", &d);
-	ft_printf("%%d : %-5d %-5d %-5d %-5d %-5d %-5d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%i : %-5i %-5i %-5i %-5i %-5i %-5i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%u : %-5u %-5u %-5u\n", 0, 42, INT_MAX);
-	ft_printf("%%x : %-5x\n", d);
-	ft_printf("%%X : %-5X\n", d);
-
-
-	printf("\n====================\n\n");
-	printf("printf: [-5]\n\n");
-	printf("%%c : %-5c\n", 'a');
-	printf("%%s : %-5s\n", "string");
-	printf("%%p : %-5p\n", &d);
-	printf("%%d : %-5d %-5d %-5d %-5d %-5d %-5d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%i : %-5i %-5i %-5i %-5i %-5i %-5i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%u : %-5u %-5u %-5u\n", 0, 42, INT_MAX);
-	printf("%%x : %-5x\n", d);
-	printf("%%X : %-5X\n", d);
-
-
-
-	printf("\n====================\n\n");
-	ft_printf("ft_printf: [5]\n\n");
-	ft_printf("%%c : %5c\n", 'a');
-	ft_printf("%%s : %5s\n", "string");
-	ft_printf("%%p : %5p\n", &d);
-	ft_printf("%%d : %5d %5d %5d %5d %5d %5d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%i : %5i %5i %5i %5i %5i %5i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%u : %5u %5u %5u\n", 0, 42, INT_MAX);
-	ft_printf("%%x : %5x\n", d);
-	ft_printf("%%X : %5X\n", d);
-
-	printf("\n====================\n\n");
-	printf("printf: [5]\n\n");
-	printf("%%c : %5c\n", 'a');
-	printf("%%s : %5s\n", "string");
-	printf("%%p : %5p\n", &d);
-	printf("%%d : %5d %5d %5d %5d %5d %5d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%i : %5i %5i %5i %5i %5i %5i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%u : %5u %5u %5u\n", 0, 42, INT_MAX);
-	printf("%%x : %5x\n", d);
-	printf("%%X : %5X\n", d);
-
-	printf("\n====================\n\n");
-	ft_printf("ft_printf: [05]\n\n");
-	ft_printf("%%d : %05d %05d %05d %05d %05d %05d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%i : %05i %05i %05i %05i %05i %05i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	ft_printf("%%u : %05u %05u %05u\n", 0, 42, INT_MAX);
-	ft_printf("%%x : %05x\n", d);
-	ft_printf("%%X : %05X\n", d);
-
-	printf("\n====================\n\n");
-	printf("printf: [05]\n\n");
-	printf("%%d : %05d %05d %05d %05d %05d %05d\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%i : %05i %05i %05i %05i %05i %05i\n", -42, 42, 0, -0, INT_MAX, INT_MIN);
-	printf("%%u : %05u %05u %05u\n", 0, 42, INT_MAX);
-	printf("%%x : %05x\n", d);
-	printf("%%X : %05X\n", d);
-
-
-	printf("\n====================\n\n");
-	printf("ft_printf: [-05]\n\n");
-	ft_printf("%%d : %-05d %-05d\n", 42, -42);
-
-
-	printf("\n====================\n\n");
-	printf("printf: [-05]\n\n");
-	printf("%%d : %-05d %-05d\n", 42, -42);
-
-
-
-	ft_printf("\n\n");
-
-	return (0);
+	printf("%#8x\n", 5);
+	ft_printf("%#8x\n", 5);
 }
 
 // int main(void)
