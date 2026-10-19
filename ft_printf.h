@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:52:05 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/16 16:54:55 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/19 16:27:13 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,9 @@ int			ft_print_unsigned(va_list args, t_format *fmt);
 int			ft_print_hex_lower(va_list args, t_format *fmt);
 int			ft_print_hex_upper(va_list args, t_format *fmt);
 int			ft_print_ptr(va_list args, t_format *fmt);
-void		ft_parse_format(char **format, t_format *fmt);
+void		ft_parse_format(const char **format, t_format *fmt);
 int			ft_conversion(va_list args, t_format *fmt);
 int			ft_print_npad(t_format *fmt, int n);
-int			ft_printf(char *format, ...);
+int			ft_printf(const char *format, ...);
 
 #endif

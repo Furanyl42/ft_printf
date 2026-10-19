@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 17:14:20 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/16 15:58:51 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/19 16:27:26 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_init_format(t_format *fmt)
 	fmt->specifier = '\0';
 }
 
-static void	ft_parse_flags(char **format, t_format *fmt)
+static void	ft_parse_flags(const char **format, t_format *fmt)
 {
 	while (**format && (**format == '-' || **format == '0' || **format == '#'
 			|| **format == ' ' || **format == '+'))
@@ -44,7 +44,7 @@ static void	ft_parse_flags(char **format, t_format *fmt)
 	}
 }
 
-static void	ft_parse_num_and_prec(char **format, t_format *fmt)
+static void	ft_parse_num_and_prec(const char **format, t_format *fmt)
 {
 	while (**format >= '0' && **format <= '9')
 	{
@@ -63,7 +63,7 @@ static void	ft_parse_num_and_prec(char **format, t_format *fmt)
 	}
 }
 
-void	ft_parse_format(char **format, t_format *fmt)
+void	ft_parse_format(const char **format, t_format *fmt)
 {
 	ft_init_format(fmt);
 	ft_parse_flags(format, fmt);

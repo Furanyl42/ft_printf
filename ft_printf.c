@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 10:58:22 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/16 17:04:58 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/19 16:25:31 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	ft_conversion(va_list args, t_format *fmt)
 	return (0);
 }
 
-static int	ft_process_specifier(char **format, va_list args)
+static int	ft_process_specifier(const char **format, va_list args)
 {
 	t_format	fmt;
 
@@ -45,7 +45,7 @@ static int	ft_process_specifier(char **format, va_list args)
 	return (ft_conversion(args, &fmt));
 }
 
-static int	ft_print_format_spec(char **format, va_list args, int *count)
+static int	ft_print_format_spec(const char **format, va_list args, int *count)
 {
 	int	r;
 
@@ -59,7 +59,7 @@ static int	ft_print_format_spec(char **format, va_list args, int *count)
 	return (1);
 }
 
-int	ft_printf(char *format, ...)
+int	ft_printf(const char *format, ...)
 {
 	va_list	args;
 	int		count;
