@@ -6,13 +6,13 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 16:40:46 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 13:43:54 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 14:25:15 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_print_npad(t_format *fmt, int n)
+int	ft_print_npad(t_flags *fmt, int n)
 {
 	int		count;
 	char	pad;

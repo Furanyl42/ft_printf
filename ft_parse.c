@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void	ft_init_format(t_format *fmt)
+static void	ft_init_flags(t_flags *fmt)
 {
 	fmt->minus = 0;
 	fmt->zero = 0;
@@ -25,7 +25,7 @@ static void	ft_init_format(t_format *fmt)
 	fmt->specifier = '\0';
 }
 
-static void	ft_parse_flags(const char **format, t_format *fmt)
+static void	ft_parse_flags(const char **format, t_flags *fmt)
 {
 	while (**format && (**format == '-' || **format == '0' || **format == '#'
 			|| **format == ' ' || **format == '+'))
@@ -46,7 +46,7 @@ static void	ft_parse_flags(const char **format, t_format *fmt)
 	}
 }
 
-static void	ft_parse_num_and_prec(const char **format, t_format *fmt)
+static void	ft_parse_num_and_prec(const char **format, t_flags *fmt)
 {
 	while (**format >= '0' && **format <= '9')
 	{
@@ -65,9 +65,9 @@ static void	ft_parse_num_and_prec(const char **format, t_format *fmt)
 	}
 }
 
-void	ft_parse_format(const char **format, t_format *fmt)
+void	ft_parse_format(const char **format, t_flags *fmt)
 {
-	ft_init_format(fmt);
+	ft_init_flags(fmt);
 	ft_parse_flags(format, fmt);
 	ft_parse_num_and_prec(format, fmt);
 	if (**format)

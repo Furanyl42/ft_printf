@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 16:26:04 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/19 15:17:01 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 15:43:42 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_put_ptr_hex(unsigned long n)
 	return (count);
 }
 
-static int	ft_print_nil(t_format *fmt)
+static int	ft_print_nil(t_flags *fmt)
 {
 	int	len;
 	int	width;
@@ -59,7 +59,7 @@ static int	ft_print_nil(t_format *fmt)
 	return (count);
 }
 
-int	ft_print_ptr(va_list args, t_format *fmt)
+int	ft_print_ptr(va_list args, t_flags *fmt)
 {
 	void			*ptr;
 	unsigned long	addr;

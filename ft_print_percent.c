@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_print_percent(va_list args, t_format *fmt)
+int	ft_print_percent(va_list args, t_flags *fmt)
 {
 	int	count;
 	int	width;

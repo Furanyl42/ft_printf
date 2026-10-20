@@ -13,7 +13,7 @@
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	ft_dispatch_formatter(va_list args, t_format *fmt)
+int	ft_dispatch_formatter(va_list args, t_flags *fmt)
 {
 	static t_func	funcs[128] = {0};
 	static int		is_init = 0;
@@ -38,9 +38,9 @@ int	ft_dispatch_formatter(va_list args, t_format *fmt)
 
 static int	ft_parse_and_dispatch(const char **format, va_list args)
 {
-	t_format	fmt;
+	t_flags	fmt;
 
-	ft_bzero(&fmt, sizeof(t_format));
+	ft_bzero(&fmt, sizeof(t_flags));
 	ft_parse_format(format, &fmt);
 	return (ft_dispatch_formatter(args, &fmt));
 }

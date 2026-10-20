@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_print_char(va_list args, t_format *fmt)
+int	ft_print_char(va_list args, t_flags *fmt)
 {
 	unsigned char	c;
 	int				count;

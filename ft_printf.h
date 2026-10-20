@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:52:05 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/19 16:27:13 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 15:16:23 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-typedef struct s_format
+typedef struct s_flags
 {
 	int		minus;
 	int		zero;
@@ -28,21 +28,33 @@ typedef struct s_format
 	int		space;
 	int		plus;
 	char	specifier;
-}			t_format;
+}			t_flags;
 
-typedef int	(*t_func)(va_list, t_format *);
+typedef struct s_number
+{
+	char sign;
+	int isneg;
+	int printsign;
+	long value;
+	int digit_len;
+	int width;
+	char *base;
+	int base_len;
+}	t_number;
 
-int			ft_print_percent(va_list args, t_format *fmt);
-int			ft_print_char(va_list args, t_format *fmt);
-int			ft_print_str(va_list args, t_format *fmt);
-int			ft_print_nbr(va_list args, t_format *fmt);
-int			ft_print_unsigned(va_list args, t_format *fmt);
-int			ft_print_hex_lower(va_list args, t_format *fmt);
-int			ft_print_hex_upper(va_list args, t_format *fmt);
-int			ft_print_ptr(va_list args, t_format *fmt);
-void		ft_parse_format(const char **format, t_format *fmt);
-int			ft_dispatch_formatter(va_list args, t_format *fmt);
-int			ft_print_npad(t_format *fmt, int n);
+typedef int	(*t_func)(va_list, t_flags *);
+
+int			ft_print_percent(va_list args, t_flags *fmt);
+int			ft_print_char(va_list args, t_flags *fmt);
+int			ft_print_str(va_list args, t_flags *fmt);
+int			ft_print_nbr(va_list args, t_flags *fmt);
+int			ft_print_unsigned(va_list args, t_flags *fmt);
+int			ft_print_hex_lower(va_list args, t_flags *fmt);
+int			ft_print_hex_upper(va_list args, t_flags *fmt);
+int			ft_print_ptr(va_list args, t_flags *fmt);
+void		ft_parse_format(const char **format, t_flags *fmt);
+int			ft_dispatch_formatter(va_list args, t_flags *fmt);
+int			ft_print_npad(t_flags *fmt, int n);
 int			ft_printf(const char *format, ...);
 
 #endif
