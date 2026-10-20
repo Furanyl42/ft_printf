@@ -6,14 +6,14 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 10:58:22 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/19 16:25:31 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 13:43:50 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "libft/libft.h"
 
-int	ft_conversion(va_list args, t_format *fmt)
+int	ft_dispatch_formatter(va_list args, t_format *fmt)
 {
 	static t_func	funcs[128] = {0};
 	static int		is_init = 0;
@@ -36,23 +36,23 @@ int	ft_conversion(va_list args, t_format *fmt)
 	return (0);
 }
 
-static int	ft_process_specifier(const char **format, va_list args)
+static int	ft_parse_and_dispatch(const char **format, va_list args)
 {
 	t_format	fmt;
 
 	ft_bzero(&fmt, sizeof(t_format));
 	ft_parse_format(format, &fmt);
-	return (ft_conversion(args, &fmt));
+	return (ft_dispatch_formatter(args, &fmt));
 }
 
-static int	ft_print_format_spec(const char **format, va_list args, int *count)
+static int	ft_handle_directive(const char **format, va_list args, int *count)
 {
 	int	r;
 
 	(*format)++;
 	if (!**format)
 		return (0);
-	r = ft_process_specifier(format, args);
+	r = ft_parse_and_dispatch(format, args);
 	if (r == -1)
 		return (-1);
 	*count += r;
@@ -72,7 +72,7 @@ int	ft_printf(const char *format, ...)
 	{
 		if (*format == '%')
 		{
-			if (ft_print_format_spec(&format, args, &count) == -1)
+			if (ft_handle_directive(&format, args, &count) == -1)
 			{
 				va_end(args);
 				return (-1);

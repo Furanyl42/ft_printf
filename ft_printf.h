@@ -41,7 +41,7 @@ int			ft_print_hex_lower(va_list args, t_format *fmt);
 int			ft_print_hex_upper(va_list args, t_format *fmt);
 int			ft_print_ptr(va_list args, t_format *fmt);
 void		ft_parse_format(const char **format, t_format *fmt);
-int			ft_conversion(va_list args, t_format *fmt);
+int			ft_dispatch_formatter(va_list args, t_format *fmt);
 int			ft_print_npad(t_format *fmt, int n);
 int			ft_printf(const char *format, ...);
 
