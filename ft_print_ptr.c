@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 16:26:04 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 17:06:41 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 17:41:55 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,41 +42,41 @@ static int	ft_print_nil(t_flags *fmt)
 
 static int	ft_print_ptr_content(unsigned long addr)
 {
-	int	cnt;
+	int	count;
 
-	cnt = 0;
-	cnt += write(1, "0x", 2);
-	cnt += ft_put_ptr_hex(addr);
-	return (cnt);
+	count = 0;
+	count += write(1, "0x", 2);
+	count += ft_put_ptr_hex(addr);
+	return (count);
 }
 
 static int	ft_print_valid_ptr(unsigned long addr, t_flags *fmt)
 {
-	int		w;
-	int		cnt;
+	int		width;
+	int		count;
 	int		len;
 	char	pad;
 
 	len = ft_ptr_len(addr) + 2;
-	w = fmt->width;
-	if (w < len)
-		w = len;
+	width = fmt->width;
+	if (width < len)
+		width = len;
 	pad = ' ';
 	if (fmt->zero && !fmt->minus)
 		pad = '0';
-	cnt = 0;
+	count = 0;
 	if (!fmt->minus)
 	{
-		while (cnt < w - len)
-			cnt += write(1, &pad, 1);
+		while (count < width - len)
+			count += write(1, &pad, 1);
 	}
-	cnt += ft_print_ptr_content(addr);
+	count += ft_print_ptr_content(addr);
 	if (fmt->minus)
 	{
-		while (cnt < w)
-			cnt += write(1, " ", 1);
+		while (count < width)
+			count += write(1, " ", 1);
 	}
-	return (cnt);
+	return (count);
 }
 
 int	ft_print_ptr(va_list args, t_flags *fmt)
