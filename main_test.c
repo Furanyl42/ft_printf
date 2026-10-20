@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/20 12:21:36 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 15:47:23 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 16:08:50 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int main(void)
     printf("--- 1. Tests de base et adresses classiques ---\n");
     
     // Pointeur standard
-    ret_ft = ft_printf("FT  : [%0p]\n", ptr);
+    ret_ft = ft_printf("FT  : [%p]\n", ptr);
     ret_sys = printf("SYS : [%p]\n", ptr);
     printf("Ret -> FT: %d | SYS: %d\n\n", ret_ft, ret_sys);
 

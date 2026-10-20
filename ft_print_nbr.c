@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 14:53:42 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 15:15:21 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 16:15:16 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -255,30 +255,3 @@ int ft_print_nbr(va_list args, t_flags *fmt)
 {
 	return (ft_handle_num(args, fmt));
 }
-
-// int	ft_print_nbr(va_list args, t_flags *fmt)
-// {
-// 	long	nbr;
-// 	int		len;
-// 	int		width;
-// 	int		count;
-//
-// 	nbr = va_arg(args, int);
-// 	len = ft_nbrlen(nbr);
-// 	width = fmt->width;
-// 	if (width < len)
-// 		width = len;
-// 	count = 0;
-// 	if (!fmt->minus)
-// 	{
-// 		while (count < width - len)
-// 			count += ft_print_npad(fmt, 1);
-// 	}
-// 	count += ft_putnbr_len(nbr);
-// 	if (fmt->minus)
-// 	{
-// 		while (count < width)
-// 			count += ft_print_npad(fmt, 1);
-// 	}
-// 	return (count);
-// }
