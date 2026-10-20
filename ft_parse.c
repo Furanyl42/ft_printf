@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 17:14:20 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/19 16:27:26 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 12:53:46 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ static void	ft_parse_flags(const char **format, t_format *fmt)
 			fmt->space = 1;
 		else if (**format == '+')
 			fmt->plus = 1;
+		// else if (**format == '.')
+		// 	fmt->dot = 1;
 		(*format)++;
 	}
 }

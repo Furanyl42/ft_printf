@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/16 16:40:46 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/19 15:16:13 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 12:47:53 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_print_npad(t_format *fmt, int n)
 	int		count;
 	char	pad;
 
-	if (fmt->zero && !fmt->minus)
+	if ((fmt->zero && !fmt->minus) || fmt->dot)
 		pad = '0';
 	else
 		pad = ' ';
