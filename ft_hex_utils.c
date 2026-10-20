@@ -6,11 +6,15 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/15 11:59:15 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/15 12:09:46 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/20 16:32:27 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
+
+#include "ft_printf.h"
+
+int	ft_putnbr_hex(unsigned int n, int uppercase);
 
 int	ft_hex_len(unsigned int n)
 {
@@ -27,18 +31,83 @@ int	ft_hex_len(unsigned int n)
 	return (len);
 }
 
-int	ft_putnbr_hex(unsigned int n, int uppercase)
+void	ft_get_hex_details(unsigned int nbr, t_flags *fmt,
+							int *num_len, int *prec_zeros)
 {
-	int		count;
-	char	*base;
+	*num_len = ft_hex_len(nbr);
+	if (fmt->dot && fmt->precision == 0 && nbr == 0)
+		*num_len = 0;
+	*prec_zeros = 0;
+	if (fmt->dot && fmt->precision > *num_len)
+		*prec_zeros = fmt->precision - *num_len;
+}
 
-	if (uppercase)
-		base = "0123456789ABCDEF";
-	else
-		base = "0123456789abcdef";
+int	ft_print_hex_left(unsigned int nbr, t_flags *fmt,
+						int uppercase, int has_prefix)
+{
+	int	count;
+	int	prec_zeros;
+	int	num_len;
+
 	count = 0;
-	if (n >= 16)
-		count += ft_putnbr_hex(n / 16, uppercase);
-	count += write(1, &base[n % 16], 1);
+	ft_get_hex_details(nbr, fmt, &num_len, &prec_zeros);
+	if (has_prefix && uppercase)
+		count += write(1, "0X", 2);
+	else if (has_prefix)
+		count += write(1, "0x", 2);
+	while (prec_zeros-- > 0)
+		count += write(1, "0", 1);
+	if (!(fmt->dot && fmt->precision == 0 && nbr == 0))
+		count += ft_putnbr_hex(nbr, uppercase);
+	while (count < fmt->width)
+		count += write(1, " ", 1);
+	return (count);
+}
+
+int	ft_print_hex_zero(unsigned int nbr, t_flags *fmt,
+						int uppercase, int has_prefix)
+{
+	int	count;
+	int	prec_zeros;
+	int	num_len;
+	int	padding;
+
+	count = 0;
+	ft_get_hex_details(nbr, fmt, &num_len, &prec_zeros);
+	padding = fmt->width - (has_prefix + prec_zeros + num_len);
+	if (has_prefix && uppercase)
+		count += write(1, "0X", 2);
+	else if (has_prefix)
+		count += write(1, "0x", 2);
+	while (padding-- > 0)
+		count += write(1, "0", 1);
+	while (prec_zeros-- > 0)
+		count += write(1, "0", 1);
+	if (!(fmt->dot && fmt->precision == 0 && nbr == 0))
+		count += ft_putnbr_hex(nbr, uppercase);
+	return (count);
+}
+
+int	ft_print_hex_right(unsigned int nbr, t_flags *fmt,
+						int uppercase, int has_prefix)
+{
+	int	count;
+	int	prec_zeros;
+	int	num_len;
+	int	padding;
+
+	count = 0;
+	ft_get_hex_details(nbr, fmt, &num_len, &prec_zeros);
+	padding = fmt->width - (has_prefix + prec_zeros + num_len);
+	while (padding-- > 0)
+		count += write(1, " ", 1);
+	if (has_prefix && uppercase)
+		count += write(1, "0X", 2);
+	else if (has_prefix)
+		count += write(1, "0x", 2);
+	while (prec_zeros-- > 0)
+		count += write(1, "0", 1);
+	if (!(fmt->dot && fmt->precision == 0 && nbr == 0))
+		count += ft_putnbr_hex(nbr, uppercase);
 	return (count);
 }

@@ -12,9 +12,9 @@
 
 #include "ft_printf.h"
 
-int    ft_print_percent(va_list args, t_flags *fmt)
+int	ft_print_percent(va_list args, t_flags *fmt)
 {
-    (void)args;
-    (void)fmt;
-    return (write(1, "%", 1));
+	(void)args;
+	(void)fmt;
+	return (write(1, "%", 1));
 }
