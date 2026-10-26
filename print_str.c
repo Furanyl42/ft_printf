@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 13:17:03 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 16:57:09 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/26 12:32:57 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	ft_strnlen(char *s, int max)
 	return (i);
 }
 
-static int	ft_write_padded_str(char *s, int len, t_flags *fmt)
+static int	write_padded_str(char *s, int len, t_flags *fmt)
 {
 	int	padding;
 	int	count;
@@ -45,7 +45,7 @@ static int	ft_write_padded_str(char *s, int len, t_flags *fmt)
 	return (count);
 }
 
-int	ft_print_str(va_list args, t_flags *fmt)
+int	print_str(va_list args, t_flags *fmt)
 {
 	char	*s;
 	int		is_null;
@@ -71,5 +71,5 @@ int	ft_print_str(va_list args, t_flags *fmt)
 		while (s[len])
 			len++;
 	}
-	return (ft_write_padded_str(s, len, fmt));
+	return (write_padded_str(s, len, fmt));
 }

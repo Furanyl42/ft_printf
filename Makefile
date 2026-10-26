@@ -6,7 +6,7 @@
 #    By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/10/14 12:39:34 by nide-wil          #+#    #+#              #
-#    Updated: 2026/10/20 17:01:10 by nide-wil         ###   ########.fr        #
+#    Updated: 2026/10/26 12:42:18 by nide-wil         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,18 +15,18 @@ NAME		= libftprintf.a
 LIBFT		= libft/libft.a
 
 SRCS		= ft_printf.c \
-			  ft_print_percent.c \
-			  ft_print_char.c \
-			  ft_print_str.c \
-			  ft_print_nbr.c \
-			  ft_print_unsigned.c \
-			  ft_print_hex.c \
-			  ft_hex_utils.c \
-			  ft_print_ptr.c \
-			  ft_parse.c \
-			  ft_utils.c \
-			  ft_ptr_utils.c \
-			  ft_unsigned_utils.c \
+			  print_percent.c \
+			  print_char.c \
+			  print_str.c \
+			  print_nbr.c \
+			  print_unsigned.c \
+			  print_hex.c \
+			  hex_utils.c \
+			  print_ptr.c \
+			  parse.c \
+			  utils.c \
+			  ptr_utils.c \
+			  unsigned_utils.c \
 
 OBJS		= $(SRCS:.c=.o)
 

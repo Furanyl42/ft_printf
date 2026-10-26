@@ -6,26 +6,13 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 17:14:20 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 16:16:37 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/26 12:17:57 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void	ft_init_flags(t_flags *fmt)
-{
-	fmt->minus = 0;
-	fmt->zero = 0;
-	fmt->dot = 0;
-	fmt->width = 0;
-	fmt->precision = 0;
-	fmt->hash = 0;
-	fmt->space = 0;
-	fmt->plus = 0;
-	fmt->specifier = '\0';
-}
-
-static void	ft_parse_flags(const char **format, t_flags *fmt)
+static void	parse_flags(const char **format, t_flags *fmt)
 {
 	while (**format && (**format == '-' || **format == '0' || **format == '#'
 			|| **format == ' ' || **format == '+'))
@@ -44,7 +31,7 @@ static void	ft_parse_flags(const char **format, t_flags *fmt)
 	}
 }
 
-static void	ft_parse_num_and_prec(const char **format, t_flags *fmt)
+static void	parse_width_and_prec(const char **format, t_flags *fmt)
 {
 	while (**format >= '0' && **format <= '9')
 	{
@@ -63,11 +50,10 @@ static void	ft_parse_num_and_prec(const char **format, t_flags *fmt)
 	}
 }
 
-void	ft_parse_format(const char **format, t_flags *fmt)
+void	parse_format(const char **format, t_flags *fmt)
 {
-	ft_init_flags(fmt);
-	ft_parse_flags(format, fmt);
-	ft_parse_num_and_prec(format, fmt);
+	parse_flags(format, fmt);
+	parse_width_and_prec(format, fmt);
 	if (**format)
 		fmt->specifier = **format;
 }

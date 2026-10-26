@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_unsigned_utils.c                                :+:      :+:    :+:   */
+/*   ft_ptr_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/10/20 17:00:46 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 17:00:51 by nide-wil         ###   ########.fr       */
+/*   Created: 2026/10/20 16:50:40 by nide-wil          #+#    #+#             */
+/*   Updated: 2026/10/20 16:50:44 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_unsigned_len(unsigned int n)
+int	ptr_len(unsigned long n)
 {
 	int	len;
 
@@ -21,19 +21,21 @@ int	ft_unsigned_len(unsigned int n)
 		return (1);
 	while (n > 0)
 	{
-		n /= 10;
+		n /= 16;
 		len++;
 	}
 	return (len);
 }
 
-int	ft_putnbr_unsigned(unsigned int n)
+int	put_ptr_hex(unsigned long n)
 {
-	int	count;
+	int		count;
+	char	*base;
 
+	base = "0123456789abcdef";
 	count = 0;
-	if (n > 9)
-		count += ft_putnbr_unsigned(n / 10);
-	count += write(1, &"0123456789"[n % 10], 1);
+	if (n >= 16)
+		count += put_ptr_hex(n / 16);
+	count += write(1, &base[n % 16], 1);
 	return (count);
 }

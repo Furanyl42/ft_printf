@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-int	ft_putnbr_len(long n)
+int	putnbr_len(long n)
 {
 	int	count;
 
@@ -20,12 +20,12 @@ int	ft_putnbr_len(long n)
 	if (n < 0)
 		n = -n;
 	if (n > 9)
-		count += ft_putnbr_len(n / 10);
+		count += putnbr_len(n / 10);
 	count += write(1, &"0123456789"[n % 10], 1);
 	return (count);
 }
 
-int	ft_digitlen(long n)
+int	digitlen(long n)
 {
 	int	len;
 
@@ -38,7 +38,7 @@ int	ft_digitlen(long n)
 	return (len);
 }
 
-int	ft_print_tnum_left(t_number nbr, int prec_zeros, int is_empty_zero)
+int	print_tnum_left(t_number nbr, int prec_zeros, int is_empty_zero)
 {
 	int	count;
 	int	has_sign;
@@ -50,13 +50,13 @@ int	ft_print_tnum_left(t_number nbr, int prec_zeros, int is_empty_zero)
 	while (prec_zeros-- > 0)
 		count += write(1, "0", 1);
 	if (!is_empty_zero)
-		count += ft_putnbr_len(nbr.value);
+		count += putnbr_len(nbr.value);
 	while (count < nbr.width)
 		count += write(1, " ", 1);
 	return (count);
 }
 
-int	ft_print_tnum_zero(t_number nbr, int prec_zeros, int is_empty_zero)
+int	print_tnum_zero(t_number nbr, int prec_zeros, int is_empty_zero)
 {
 	int	count;
 	int	has_sign;
@@ -76,11 +76,11 @@ int	ft_print_tnum_zero(t_number nbr, int prec_zeros, int is_empty_zero)
 	while (prec_zeros-- > 0)
 		count += write(1, "0", 1);
 	if (!is_empty_zero)
-		count += ft_putnbr_len(nbr.value);
+		count += putnbr_len(nbr.value);
 	return (count);
 }
 
-int	ft_print_tnum_right(t_number nbr, int prec_zeros, int is_empty_zero)
+int	print_tnum_right(t_number nbr, int prec_zeros, int is_empty_zero)
 {
 	int	count;
 	int	has_sign;
@@ -100,6 +100,6 @@ int	ft_print_tnum_right(t_number nbr, int prec_zeros, int is_empty_zero)
 	while (prec_zeros-- > 0)
 		count += write(1, "0", 1);
 	if (!is_empty_zero)
-		count += ft_putnbr_len(nbr.value);
+		count += putnbr_len(nbr.value);
 	return (count);
 }

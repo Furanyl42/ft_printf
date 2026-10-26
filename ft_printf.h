@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/13 17:52:05 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 16:42:20 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/26 12:34:30 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,16 @@ typedef struct s_number
 
 typedef int	(*t_func)(va_list, t_flags *);
 
-int			ft_print_percent(va_list args, t_flags *fmt);
-int			ft_print_char(va_list args, t_flags *fmt);
-int			ft_print_str(va_list args, t_flags *fmt);
-int			ft_print_nbr(va_list args, t_flags *fmt);
-int			ft_print_unsigned(va_list args, t_flags *fmt);
-int			ft_print_hex_lower(va_list args, t_flags *fmt);
-int			ft_print_hex_upper(va_list args, t_flags *fmt);
-int			ft_print_ptr(va_list args, t_flags *fmt);
-void		ft_parse_format(const char **format, t_flags *fmt);
-int			ft_dispatch_formatter(va_list args, t_flags *fmt);
-int			ft_print_npad(t_flags *fmt, int n);
+int			print_percent(va_list args, t_flags *fmt);
+int			print_char(va_list args, t_flags *fmt);
+int			print_str(va_list args, t_flags *fmt);
+int			print_nbr(va_list args, t_flags *fmt);
+int			print_unsigned(va_list args, t_flags *fmt);
+int			print_hex_lower(va_list args, t_flags *fmt);
+int			print_hex_upper(va_list args, t_flags *fmt);
+int			print_ptr(va_list args, t_flags *fmt);
+void		parse_format(const char **format, t_flags *fmt);
+int			dispatch_formatter(va_list args, t_flags *fmt);
 
 int			ft_printf(const char *format, ...);
 

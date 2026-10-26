@@ -6,16 +6,16 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 16:26:04 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 17:41:55 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/26 12:20:21 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-int	ft_ptr_len(unsigned long n);
-int	ft_put_ptr_hex(unsigned long n);
+int	ptr_len(unsigned long n);
+int	put_ptr_hex(unsigned long n);
 
-static int	ft_print_nil(t_flags *fmt)
+static int	print_nil(t_flags *fmt)
 {
 	int	width;
 	int	padding;
@@ -40,24 +40,24 @@ static int	ft_print_nil(t_flags *fmt)
 	return (count);
 }
 
-static int	ft_print_ptr_content(unsigned long addr)
+static int	print_ptr_content(unsigned long addr)
 {
 	int	count;
 
 	count = 0;
 	count += write(1, "0x", 2);
-	count += ft_put_ptr_hex(addr);
+	count += put_ptr_hex(addr);
 	return (count);
 }
 
-static int	ft_print_valid_ptr(unsigned long addr, t_flags *fmt)
+static int	print_valid_ptr(unsigned long addr, t_flags *fmt)
 {
 	int		width;
 	int		count;
 	int		len;
 	char	pad;
 
-	len = ft_ptr_len(addr) + 2;
+	len = ptr_len(addr) + 2;
 	width = fmt->width;
 	if (width < len)
 		width = len;
@@ -70,7 +70,7 @@ static int	ft_print_valid_ptr(unsigned long addr, t_flags *fmt)
 		while (count < width - len)
 			count += write(1, &pad, 1);
 	}
-	count += ft_print_ptr_content(addr);
+	count += print_ptr_content(addr);
 	if (fmt->minus)
 	{
 		while (count < width)
@@ -79,14 +79,14 @@ static int	ft_print_valid_ptr(unsigned long addr, t_flags *fmt)
 	return (count);
 }
 
-int	ft_print_ptr(va_list args, t_flags *fmt)
+int	print_ptr(va_list args, t_flags *fmt)
 {
 	void			*ptr;
 	unsigned long	addr;
 
 	ptr = va_arg(args, void *);
 	if (!ptr)
-		return (ft_print_nil(fmt));
+		return (print_nil(fmt));
 	addr = (unsigned long)ptr;
-	return (ft_print_valid_ptr(addr, fmt));
+	return (print_valid_ptr(addr, fmt));
 }
