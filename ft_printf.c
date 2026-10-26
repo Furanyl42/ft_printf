@@ -6,7 +6,7 @@
 /*   By: nide-wil <nide-wil@student.42belgium.be>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/14 10:58:22 by nide-wil          #+#    #+#             */
-/*   Updated: 2026/10/20 13:43:50 by nide-wil         ###   ########.fr       */
+/*   Updated: 2026/10/26 11:00:20 by nide-wil         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,22 @@
 
 int	ft_dispatch_formatter(va_list args, t_flags *fmt)
 {
-	static t_func	funcs[128] = {0};
-	static int		is_init = 0;
-
-	if (!is_init)
-	{
-		funcs['c'] = ft_print_char;
-		funcs['s'] = ft_print_str;
-		funcs['p'] = ft_print_ptr;
-		funcs['d'] = ft_print_nbr;
-		funcs['i'] = ft_print_nbr;
-		funcs['u'] = ft_print_unsigned;
-		funcs['x'] = ft_print_hex_lower;
-		funcs['X'] = ft_print_hex_upper;
-		funcs['%'] = ft_print_percent;
-		is_init = 1;
-	}
-	if (funcs[(int)fmt->specifier])
-		return (funcs[(int)fmt->specifier](args, fmt));
+	if (fmt->specifier == 'c')
+		return (ft_print_char(args, fmt));
+	if (fmt->specifier == 's')
+		return (ft_print_str(args, fmt));
+	if (fmt->specifier == 'p')
+		return (ft_print_ptr(args, fmt));
+	if (fmt->specifier == 'd' || fmt->specifier == 'i')
+		return (ft_print_nbr(args, fmt));
+	if (fmt->specifier == 'u')
+		return (ft_print_unsigned(args, fmt));
+	if (fmt->specifier == 'x')
+		return (ft_print_hex_lower(args, fmt));
+	if (fmt->specifier == 'X')
+		return (ft_print_hex_upper(args, fmt));
+	if (fmt->specifier == '%')
+		return (ft_print_percent(args, fmt));
 	return (0);
 }
 
