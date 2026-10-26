@@ -14,28 +14,27 @@
 #include "libft/libft.h"
 #include <stddef.h>
 
-int dispatch_formatter(va_list args, t_flags *fmt)
+int	dispatch_formatter(va_list args, t_flags *fmt)
 {
-    t_func  funcs[128];
-	unsigned char spec;
+	t_func			funcs[128];
+	unsigned char	spec;
 
 	if (!fmt)
 		return (0);
-    ft_bzero(funcs, sizeof(funcs));
+	ft_bzero(funcs, sizeof(funcs));
 	spec = (unsigned char)fmt->specifier;
 	funcs['c'] = print_char;
-    funcs['s'] = print_str;
-    funcs['p'] = print_ptr;
-    funcs['d'] = print_nbr;
-    funcs['i'] = print_nbr;
-    funcs['u'] = print_unsigned;
-    funcs['x'] = print_hex_lower;
-    funcs['X'] = print_hex_upper;
-    funcs['%'] = print_percent;
-
-    if (spec < 128 && funcs[spec])
-        return (funcs[spec](args, fmt));
-    return (0);
+	funcs['s'] = print_str;
+	funcs['p'] = print_ptr;
+	funcs['d'] = print_nbr;
+	funcs['i'] = print_nbr;
+	funcs['u'] = print_unsigned;
+	funcs['x'] = print_hex_lower;
+	funcs['X'] = print_hex_upper;
+	funcs['%'] = print_percent;
+	if (spec < 128 && funcs[spec])
+		return (funcs[spec](args, fmt));
+	return (0);
 }
 
 static int	parse_and_dispatch(const char **format, va_list args)
